@@ -10,7 +10,7 @@ docker run -d \
     -v /opt/fs22/config:/opt/fs22/config \
     -v /opt/fs22/game:/opt/fs22/game \
     -e USERNAME="FS22USER" \
-    -e USERID=1004 \
+    -e USERID=1000 \
     -e VNC_PASSWORD="FS22USER" \
     -e WEB_USERNAME="FS22USER" \
     -e WEB_PASSWORD="FS22USER" \
