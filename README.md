@@ -29,21 +29,24 @@ This is the first beta verion to be released!
 ```
 docker run -d \
     --name docker-fs22-server \
-    --cap-add=sys_nice \
     -p 5900:5900/tcp \
     -p 8080:8080/tcp \
     -p 9000:9000/tcp \
     -p 10823:10823/tcp \
     -p 10823:10823/udp \
     -v /etc/localtime:/etc/localtime:ro \
-    -v /opt/fs22_installer:/installer_files \
+    -v /path/to/installerfiles:/opt/fs22/installer \
+    -v /path/to/gameconfig:/opt/fs22/config \
+    -v /path/to/game:/opt/fs22/game \
     -e USERNAME="FS22USER" \
+    -e USERID=1000 \
     -e VNC_PASSWORD="FS22USER" \
     -e WEB_USERNAME="FS22USER" \
-    -e WEB_PASSWORD="FS22USER" \
-    -e SERVER_NAME="Docker Server" \
-    -e SERVER_ADMIN="FS22USER" \
-    -e SERVER_PASSWORD="FS22USER" \
+    -e WEB_PASSWORD="FS22WEBPASSWD" \
+    -e RESOLUTION="1280x720" \
+    -e SERVER_NAME="FS22 Docker Server" \
+    -e SERVER_ADMIN="FS22SERVERADMINPASWD" \
+    -e SERVER_PASSWORD="FS22SERVERPASSWD" \
     -e SERVER_PLAYERS="16" \
     -e SERVER_PORT="10823" \
     -e SERVER_REGION="en" \
@@ -53,7 +56,7 @@ docker run -d \
     -e SERVER_SAVE_INTERVAL="180.000000" \
     -e SERVER_STATS_INTERVAL="31536000" \
     -e SERVER_CROSSPLAY="true" \
-    wine-gameservers/docker-winebased-server-fs22
+    toetje585/docker-winebased-server-fs22
 ```
 
 # Environment Variables
@@ -62,8 +65,10 @@ docker run -d \
 | Name | Default | Purpose |
 |----------|----------|-------|
 | `USERNAME` | `FS22USER` | The username used inside the docker container |
-| `VNC_PASSWORD` | `FS22USER` | Password for connecting using the VNC client |
+| `USERID` | `1000` | The username PUID and GUID |
+| `VNC_PASSWORD` | `FS22USER` | Password for connecting using the vnc client |
 | `WEB_USERNAME` | `FS22USER` | Username for admin portal at :8080 |
+| `RESOLUTION` | `AUTO` | Set a desired screen resolution for the vnc client |
 | `SERVER_NAME` | `Docker Server` | Name that will be shown in the server browser |
 | `SERVER_PORT` | `10823` | Default: 10823, port that the server will listen on |
 | `SERVER_ADMIN` | `FS22USER` | Default: FS22USER", admin username for the game |

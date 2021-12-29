@@ -1,14 +1,16 @@
 docker run -d \
     --name docker-fs22-server \
-    --cap-add=sys_nice \
     -p 5900:5900/tcp \
     -p 8080:8080/tcp \
     -p 9000:9000/tcp \
     -p 10823:10823/tcp \
     -p 10823:10823/udp \
     -v /etc/localtime:/etc/localtime:ro \
-    -v /opt/fs22_installer:/installer_files \
+    -v /opt/fs22/installer:/opt/fs22/installer \
+    -v /opt/fs22/config:/opt/fs22/config \
+    -v /opt/fs22/game:/opt/fs22/game \
     -e USERNAME="FS22USER" \
+    -e USERID=1004 \
     -e VNC_PASSWORD="FS22USER" \
     -e WEB_USERNAME="FS22USER" \
     -e WEB_PASSWORD="FS22USER" \
@@ -24,4 +26,4 @@ docker run -d \
     -e SERVER_SAVE_INTERVAL="180.000000" \
     -e SERVER_STATS_INTERVAL="31536000" \
     -e SERVER_CROSSPLAY="true" \
-    wine-gameservers/docker-winebased-server-fs22
+    toetje585/docker-winebased-server-fs22

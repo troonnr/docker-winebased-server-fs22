@@ -4,6 +4,14 @@ export WINEDEBUG=-all,fixme-all
 export WINEARCH=win64
 export WINEPREFIX=~/.fs22server
 
+
+# Create the symlink to host path
+
+mkdir -p ~/.fs22server/drive_c/users/$USER/Documents/My\ Games
+mkdir -p /opt/fs22/game/Farming\ Simulator\ 2022
+ln -s /opt/fs22/config/FarmingSimulator2022 ~/.fs22server/drive_c/users/$USER/Documents/My\ Games
+ln -s /opt/fs22/game/Farming\ Simulator\ 2022 ~/.fs22server/drive_c/Program\ Files\ \(x86\)
+
 if [ -d ~/.fs22server/drive_c/users/$USER/Documents/My\ Games/FarmingSimulator2022/dedicated_server/logs ]
 then
     echo "The directories are in place!"
@@ -16,7 +24,7 @@ if [ -f ~/.fs22server/drive_c/Program\ Files\ \(x86\)/Farming\ Simulator\ 2022/F
 then
     echo "Already installed we can skip this"
 else
-    wine "/installer_files/Setup.exe"
+    wine "/opt/fs22/installer/Setup.exe"
 fi
 
 # Do we have a license file installed?
@@ -41,7 +49,7 @@ fi
 
 if [ -d ~/.fs22server/drive_c/Program\ Files\ \(x86\)/Farming\ Simulator\ 2022/ ]
 then
-    cp "/fs22xml/default_dedicatedServer.xml" ~/.fs22server/drive_c/Program\ Files\ \(x86\)/Farming\ Simulator\ 2022/dedicatedServer.xml
+    cp "/opt/fs22/xml/default_dedicatedServer.xml" ~/.fs22server/drive_c/Program\ Files\ \(x86\)/Farming\ Simulator\ 2022/dedicatedServer.xml
 else
     echo "Game not installed?" && exit
 fi
@@ -50,7 +58,7 @@ fi
 
 if [ -d ~/.fs22server/drive_c/users/$USER/Documents/My\ Games/FarmingSimulator2022/ ]
 then
-    cp "/fs22xml/default_dedicatedServerConfig.xml" ~/.fs22server/drive_c/users/$USER/Documents/My\ Games/FarmingSimulator2022/dedicated_server/dedicatedServerConfig.xml
+    cp "/opt/fs22/xml/default_dedicatedServerConfig.xml" ~/.fs22server/drive_c/users/$USER/Documents/My\ Games/FarmingSimulator2022/dedicated_server/dedicatedServerConfig.xml
 else
     echo "Game diden't start for first time no directories?" && exit
 fi
@@ -85,15 +93,6 @@ then
     rm ~/.fs22server/drive_c/users/$USER/Documents/My\ Games/FarmingSimulator2022/log.txt && touch ~/.fs22server/drive_c/users/$USER/Documents/My\ Games/FarmingSimulator2022/log.txt
 else
     touch ~/.fs22server/drive_c/users/$USER/Documents/My\ Games/FarmingSimulator2022/log.txt
-fi
-
-# Start the server
-
-if [ -f ~/.fs22server/drive_c/Program\ Files\ \(x86\)/Farming\ Simulator\ 2022/dedicatedServer.exe ]
-then
-    wine ~/.fs22server/drive_c/Program\ Files\ \(x86\)/Farming\ Simulator\ 2022/dedicatedServer.exe
-else
-    echo "Game not installed?" && exit
 fi
 
 exit 0
