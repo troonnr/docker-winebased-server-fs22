@@ -71,11 +71,11 @@ docker run -d \
 | `RESOLUTION` | `AUTO` | Set a desired screen resolution for the vnc client |
 | `SERVER_NAME` | `Docker Server` | Name that will be shown in the server browser |
 | `SERVER_PORT` | `10823` | Default: 10823, port that the server will listen on |
-| `SERVER_ADMIN` | `FS22USER` | Default: FS22USER", admin username for the game |
-| `SERVER_PASSWORD` | `FS22USER` | Default: FS22USER", server password for the game |
-| `SERVER_REGION` | `en,de,nl` | I still need to grab all supported country letters, this will be updated asap... |
+| `SERVER_ADMIN` | `FS22USER` | Default: FS22USER, admin username for the game |
+| `SERVER_PASSWORD` | `FS22USER` | Default: FS22USER, server password for the game |
+| `SERVER_REGION` | `en,de,nl` | One of the following: en, de, jp, pl, cz, fr, es, ru, it, pt, hu, nl, cs, ct, br, tr, ro, kr, ea, da, fi, no, sv, fc |
 | `SERVER_PLAYERS` | `16` | Default: 16 amount of players allowed on the server |
-| `SERVER_MAP` | `MapUS` | Default: MapUS, need to grab the other names will update asap! |
+| `SERVER_MAP` | `MapUS` | Default: MapUS (Elmcreek), other official maps are: MapFR (Haut-Beyleron), MapAlpine (Erlengrat) |
 | `SERVER_DIFFICULTY` | `3` | Default: 3, start from scratch |
 | `SERVER_PAUSE` | `2` | Default: 2 Pause the server if no players are connected 1, never pause the server |
 | `SERVER_SAVE_INTERVAL` | `180.000000` | Default:180.000000, in seconds |
