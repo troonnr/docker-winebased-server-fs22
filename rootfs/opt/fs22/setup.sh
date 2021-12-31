@@ -5,16 +5,53 @@ export WINEARCH=win64
 export WINEPREFIX=~/.fs22server
 
 
-# Create the symlink to host path
+# Check if the config directory is already written
 
+if [ -d /opt/fs22/config/FarmingSimulator2022 ]
+then
+    echo "The host config directories are already in place!"
+else
+mkdir -p /opt/fs22/config/FarmingSimulator2022
+
+fi
+
+if [ -d ~/.fs22server/drive_c/users/$USER/Documents/My\ Games\FarmingSimulator2022 ]
+then
+    echo "The docker config directories are already in place!"
+else
 mkdir -p ~/.fs22server/drive_c/users/$USER/Documents/My\ Games
+
+fi
+
+
+if [ -d /opt/fs22/game/Farming\ Simulator\ 2022 ]
+then
+    echo "The host game directorie are already in place!"
+else
 mkdir -p /opt/fs22/game/Farming\ Simulator\ 2022
-ln -s /opt/fs22/config/FarmingSimulator2022 ~/.fs22server/drive_c/users/$USER/Documents/My\ Games
-ln -s /opt/fs22/game/Farming\ Simulator\ 2022 ~/.fs22server/drive_c/Program\ Files\ \(x86\)
+
+fi
+
+
+if [ -d /opt/fs22/game/Farming\ Simulator\ 2022 ]
+then
+    ln -s /opt/fs22/game/Farming\ Simulator\ 2022 ~/.fs22server/drive_c/Program\ Files\ \(x86\)
+else
+echo "The host game directorie are not in place can't create symlink!"
+
+fi
+
+if [ -d ~/.fs22server/drive_c/users/$USER/Documents/My\ Games ]
+then
+    ln -s /opt/fs22/config/FarmingSimulator2022 ~/.fs22server/drive_c/users/$USER/Documents/My\ Games
+else
+echo "The docker config directorie are not in place can't create symlink!"
+
+fi
 
 if [ -d ~/.fs22server/drive_c/users/$USER/Documents/My\ Games/FarmingSimulator2022/dedicated_server/logs ]
 then
-    echo "The directories are in place!"
+    echo "The log directories are in place!"
 else
     mkdir -p ~/.fs22server/drive_c/users/$USER/Documents/My\ Games/FarmingSimulator2022/dedicated_server/logs
 
