@@ -28,23 +28,6 @@
   <Networking>
     <Mode>bridge</Mode>
   </Networking>
-  <Data>
-    <Volume>
-      <HostDir>/mnt/user/appdata/fs22server/installer</HostDir>
-      <ContainerDir>/opt/fs22/installer</ContainerDir>
-      <Mode>rw</Mode>
-    </Volume>
-    <Volume>
-      <HostDir>/mnt/user/appdata/fs22server/config</HostDir>
-      <ContainerDir>/opt/fs22/config</ContainerDir>
-      <Mode>rw</Mode>
-    </Volume>
-    <Volume>
-      <HostDir>/mnt/user/appdata/fs22server/game</HostDir>
-      <ContainerDir>/opt/fs22/game</ContainerDir>
-      <Mode>rw</Mode>
-    </Volume>
-  </Data>
   <WebUI>http://[IP]:[PORT:8080]/</WebUI>
   <Banner></Banner>
   <Config Name="Server Installer" Target="/opt/fs22/installer" Default="" Mode="rw" Description="This directory contains the farming simulator 22 installer! Downloaded from https://eshop.giants-software.com/" Type="Path" Display="always" Required="false" Mask="false">/mnt/user/appdata/fs22server/installer</Config>
