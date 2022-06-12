@@ -1,30 +1,42 @@
 ![FS22](https://raw.githubusercontent.com/wine-gameservers/docker-winebased-server-fs22/main/misc/fs22_top_logo.png "Farming Simulator 22")
 
-# docker-winebased-server-fs22
-
 Farming Simulator 22 server running inside a Docker Container (with [vnc](#vnc)
 This project is maintained at [wine-gameservers/docker-winebased-server-fs22](https://github.com/wine-gameservers/docker-winebased-server-fs22) 
 
-Please note this project is missing crucial documentation regarding the usage and requirements for running this docker container, currently this information is only available in our Discord server listed in the footer of this readme.
-
-**Description**
-
-This is the first beta verion to be released!
-  
 # Table of contents
 
-* [Basic Docker Usage](#basic-docker-usage)
-* [System requirements](#system-requirements)
-* [Environment Variables](#environment-variables)
+* [Foreword](#foreword)
+* [Steps to deploy](#steps-to-deploy)
+* [Docker Run Template](#docker-run-template)
+* ~~System requirements~~ TBD
+* [Environment variables](#environment-variables)
 
-* [Configuration](#configuration)
+* ~~Configuration~~ TBD
 
-* [vnc](#vnc)
+## Foreword
+- ARM devices are not supported!
+- You need legal and active license code in order to install Farming Simulator 22 server. You can buy it [from here ](https://farming-simulator.com/buy-now.php?lang=en&country=nl&platform=pcdigital) to support Aussie Farmer.
+- This docker image emulates Windows instruction set by using Wine. That means there may NOT be 100% compatibility.
+- This guide doesn't cover all possible scenarios.
+- In case if any questions, join our [Discord server](#discord-server)
 
-* [Status web server](#status-web-server)
+## Steps to deploy
+0. Obtain legal license code of Farming Simulator 22
+1. On [Giant's download page](https://eshop.giants-software.com/downloads.php), enter the license code and download FS22 image (FarmingSimulator2022ESD.img)
+2. Unpack the downloaded image and move contents to desired folder on host
+3. Look at the docker run template and make changes that fit your needs [^1]
+5. After that, run the docker image
+6. [Download VNC Viewer](https://www.realvnc.com/en/connect/download/viewer/) and connect to automatically created VNC server with `host_ip:5900`
+7. Grant owner permissions to /opt/fs22 by using `sudo chown -R username:username /opt/fs22` (replace `username` with actual username)[^2]
+8. In the home folder, run setup.sh (usually by using `bash ./setup.sh`)
+9. If installation was successful, start the actual server by using `bash ./fs22start.sh`[^3]
+10. Now, access the Web UI on `host_ip:8080`
 
+[^1]: Set the `USERID` variable to User ID that will run the docker container. Change the binded folder to folder where you have installation image unpacked
+[^2]: Default root password is "ubuntu"
+[^3]: If the error window appear that you need to install latest graphics drivers, just click "No" and ignore it
 
-# Basic Docker Usage
+# Docker Run Template
 
 ```
 docker run -d \
@@ -59,13 +71,13 @@ docker run -d \
     toetje585/docker-winebased-server-fs22
 ```
 
-# Environment Variables
+# Environment variables
 **All variable names and values are case-sensitive!**
 
 | Name | Default | Purpose |
 |----------|----------|-------|
 | `USERNAME` | `FS22USER` | The username used inside the docker container |
-| `USERID` | `1000` | The username PUID and GUID |
+| `USERID` | `1000` | The username PUID and PGID |
 | `VNC_PASSWORD` | `FS22USER` | Password for connecting using the vnc client |
 | `WEB_USERNAME` | `FS22USER` | Username for admin portal at :8080 |
 | `RESOLUTION` | `AUTO` | Set a desired screen resolution for the vnc client |
@@ -78,13 +90,13 @@ docker run -d \
 | `SERVER_MAP` | `MapUS` | Default: MapUS (Elmcreek), other official maps are: MapFR (Haut-Beyleron), MapAlpine (Erlengrat) |
 | `SERVER_DIFFICULTY` | `3` | Default: 3, start from scratch |
 | `SERVER_PAUSE` | `2` | Default: 2 Pause the server if no players are connected 1, never pause the server |
-| `SERVER_SAVE_INTERVAL` | `180.000000` | Default:180.000000, in seconds |
+| `SERVER_SAVE_INTERVAL` | `180.000000` | Default:180.000000, in seconds; Doesn't seem to change anything |
 | `SERVER_STATS_INTERVAL` | `31536000` | Default: 120.000000, webapi is not supported anymore for FS22 so lets give it an odd number so it doesen't spam the logs |
 | `SERVER_CROSSPLAY` | `true/false` | Default:true |
 
-# Discord
+# Discord server
 
-Want to help or contribute by testing? join my discord!
+Want to help or contribute by testing? Join our discord!
 
 https://discord.gg/57EY9pmg9U
 
