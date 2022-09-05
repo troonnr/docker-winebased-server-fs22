@@ -86,7 +86,7 @@ docker run -d \
 
 Want to help or contribute by testing? join my discord!
 
-https://discord.gg/57EY9pmg9U
+https://discord.gg/Ejz2MaXSNb
 
 # Legal disclaimer
 This Docker container is not endorsed by, directly affiliated with, maintained, authorized, or sponsored by [Giants Software](https://giants-software.com) and [Farming Simulator 22](https://farming-simulator.com/). The logo [Farming Simulator 22](https://giants-software.com) are © 2021 Giants Software.
