@@ -1,4 +1,4 @@
-FROM wine-gameservers/docker-winebased-server-base:latest
+FROM toetje585/arch-wine-fs22:latest
 LABEL org.opencontainers.image.authors = "Toetje585"
 LABEL org.opencontainers.image.source = "https://github.com/wine-gameservers/docker-winebased-server-base"
 
